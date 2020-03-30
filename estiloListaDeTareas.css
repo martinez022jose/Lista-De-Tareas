@@ -1,0 +1,120 @@
+*{
+	margin:0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+body{
+	background: #ededed;
+}
+
+/*Trabajamos sobre la pantalla*/
+
+.contenedor{
+    width: 100%;
+    display: flex;
+}
+
+.contenedor .cajaPantalla .logo{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+
+.contenedor .cajaPantalla .logo h1{
+	font-size: 40px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.contenedor .cajaPantalla{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px;
+	width: 60%;
+	position: absolute;
+	top:0px;
+	left: 0px;
+}
+
+.contenedor .cajaPantalla .tituloTarea{
+	width: 500px;
+	height: 40px;
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 20px;
+}
+
+.contenedor .cajaPantalla .descripcionTarea{
+	width: 500px;
+	height: 80px;
+	text-align: center;
+	margin-bottom: 30px;
+	max-width: 500px;
+	min-width: 500px;
+	min-height: 100px;
+	max-height: 200px;
+	font-size: 20px;
+}
+
+.contenedor .cajaPantalla #buttonAgregar{
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	border-radius: 20px;
+	background: black;
+	color: #fff;
+	border:1px solid #fff;
+	font-size: 20px;
+
+}
+
+/*Trabajamos sobre la listaDeTareas*/
+
+.contenedor .listaDeTareas{
+	position: absolute;
+	top:0px;
+	right: 0px;
+	width: 40%;
+	padding: 30px;
+}
+
+.contenedor .listaDeTareas h2{
+	font-size: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.contenedor .listaDeTareas #item{
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+	padding: 10px;
+	border-bottom: 1px solid black;
+
+
+}
+
+.contenedor .listaDeTareas #item h3{
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+.contenedor .listaDeTareas #item p{
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+.contenedor .listaDeTareas #item #botonEliminar{
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	border-radius: 20px;
+	background: red;
+	color: #fff;
+	border:1px solid #fff;
+	font-size: 20px;
+}
