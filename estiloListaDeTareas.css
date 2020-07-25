@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Paytone+One&display=swap');
+
 *{
 	margin:0px;
 	padding: 0px;
@@ -6,20 +8,22 @@
 
 body{
 	background: #ededed;
+	font-family: 'Paytone One', sans-serif;
+	
 }
 
 /*Trabajamos sobre la pantalla*/
 
 .contenedor{
-    width: 100%;
-    display: flex;
+	display: flex;
+	
 }
 
 .contenedor .cajaPantalla .logo{
     text-align: center;
     display: flex;
     justify-content: center;
-    width: 60%;
+    
 }
 
 .contenedor .cajaPantalla .logo h1{
@@ -34,7 +38,7 @@ body{
 	align-items: center;
 	flex-direction: column;
 	padding: 30px;
-	width: 60%;
+	width: 70%;
 	position: absolute;
 	top:0px;
 	left: 0px;
@@ -78,8 +82,9 @@ body{
 	position: absolute;
 	top:0px;
 	right: 0px;
-	width: 40%;
+	width: 30%;
 	padding: 30px;
+	margin-right: 100px;
 }
 
 .contenedor .listaDeTareas h2{
@@ -109,12 +114,11 @@ body{
 }
 
 .contenedor .listaDeTareas #item #botonEliminar{
-	width: 100px;
-	height: 60px;
+	width: 60px;
+	height: 30px;
 	text-align: center;
-	border-radius: 20px;
 	background: red;
 	color: #fff;
 	border:1px solid #fff;
-	font-size: 20px;
+	font-size: 15px;
 }
