@@ -13,9 +13,9 @@ let tareas = [];
 let updates = [];
 
 const getTareas = () => {
-		let tareasRender = tareas.map((tarea,indice)=>`<div class="col-3 m-2">
-			<div class="card">
-				<div class="card-body">
+		let tareasRender = tareas.map((tarea,indice)=>`<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-2">
+			<div class="card border border-secondary around">
+				<div class="card-body text-center text-justify">
 					<h5 class="card-title">${tarea.title}</h5>
 					<p class="card-text">${tarea.descripcion}.</p>
 					<button class="btn btn-danger del fas fa-trash-alt" data-indice=${indice} data-accion="Eliminar"></button>
