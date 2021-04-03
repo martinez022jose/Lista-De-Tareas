@@ -18,8 +18,8 @@ const getTareas = () => {
 				<div class="card-body">
 					<h5 class="card-title">${tarea.title}</h5>
 					<p class="card-text">${tarea.descripcion}.</p>
-					<button class="btn btn-danger del" data-indice=${indice}>Eliminar</button>
-					<button class="btn btn-warning edit" data-indice=${indice} data-toggle="modal" data-target="#exampleModal">Editar</button>
+					<button class="btn btn-danger del fas fa-trash-alt" data-indice=${indice} data-accion="Eliminar"></button>
+					<button class="btn btn-warning edit fas fa-list" data-indice=${indice} data-accion="Editar" data-toggle="modal" data-target="#exampleModal"></button>
 				</div>
 				</div>
 			</div>`).join('');
@@ -42,6 +42,7 @@ const getTareas = () => {
 const agregarTarea = (e) => {
 	e.preventDefault();
 	let accionARealizar = addTarea.innerText;
+	console.log(accionARealizar);
 	let newTarea = {
 		title: title.value,
 		descripcion: desc.value,
