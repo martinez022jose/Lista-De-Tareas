@@ -13,7 +13,7 @@ let tareas = [];
 let updates = [];
 
 const getTareas = () => {
-		let tareasRender = tareas.map((tarea,indice)=>`<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-2">
+		let tareasRender = tareas.map((tarea,indice)=>`<div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 p-2">
 			<div class="card border border-secondary around">
 				<div class="card-body text-center text-justify">
 					<h5 class="card-title">${tarea.title}</h5>
