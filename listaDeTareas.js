@@ -1,56 +1,128 @@
-(()=>{
+const refListaDeTareas = document.getElementById('listaDeTareas');
+const title = document.getElementById('title');
+const desc = document.getElementById('desc');
 
-	var listaDeTareas = document.querySelector('.contenedor .listaDeTareas .lista');
-    var titulo = document.querySelector('.contenedor .cajaPantalla .tituloTarea');
-	var descripcion = document.querySelector('.contenedor .cajaPantalla .descripcionTarea');
-	var botonAgregar = document.querySelector('.contenedor .cajaPantalla #buttonAgregar');
-	var botonesCerrar = document.querySelectorAll('contenedor .listaDeTareas .lista .item #botonEliminar');
-	//var botonEliminar = document.querySelector('.contenedor .listaDeTareas .item #botonEliminar');
-	 
-	botonAgregar.addEventListener('click',()=>{
-        
-        //Obtenemos los datos al momento de realizar el click
-		var contenidoTitulo = titulo.value;
-		var contenidoDescripcion = descripcion.value;
-        
-        //Reinicimos valores
+const formTask = document.getElementById('formTask');
+const addTarea = document.getElementById('addTarea');
+const errorDatos = document.getElementById('exit');
 
-        titulo.value = null;
-		descripcion.value =null;
+let refIndice = null;
+const add = document.getElementById('add');
+let indiceRef = null;
 
-		//Genero variables para un "item" nuevo
+let tareas = [
+	{title: "Hola", descripcion: "sadadsadada"},
+	{title: "chiques", descripcion: "asddadas"}
+];
 
-		var button = document.createElement('input');
-		var item = document.createElement('div');
-		var h3 = document.createElement('h3');
-	    var p =document.createElement('p');
-        
-        //Agrego el atributos para la etiqueta correspondiente
-	    item.setAttribute("id","item");
-	    button.setAttribute("id","botonEliminar");
-	    button.setAttribute("type","button");
-	    button.setAttribute("value","borrar");
+let updates = [];
+
+const modal = document.getElementById('modales');
 
 
-        //Encapsulamos el texto 
-	    var contTitulo = document.createTextNode(contenidoTitulo);
-	    var contDescripcion = document.createTextNode(contenidoDescripcion);
-       
-        //Enlazamos las etiquetas html
+const getTareas = () => {
+	let tareasRender = tareas.map((tarea,indice)=>`<div class="col-3 m-2">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${tarea.title}</h5>
+        <p class="card-text">${tarea.descripcion}.</p>
+        <button class="btn btn-danger del" data-indice=${indice}>Eliminar</button>
+		<button class="btn btn-warning edit" data-indice=${indice} data-toggle="modal" data-target="#exampleModal">Editar</button>
+      </div>
+    </div>
+  </div>`
 
-	    h3.appendChild(contTitulo);
-	    p.appendChild(contDescripcion);
-	    item.appendChild(h3);
-	    item.appendChild(p);
-	    item.appendChild(button);
-        listaDeTareas.appendChild(item);
+	).join('');
 
-        button.addEventListener('click',()=>{
-        	listaDeTareas.removeChild(item);
-        });
-        
-        
+	refListaDeTareas.innerHTML = tareasRender;
+	Array.from(document.querySelectorAll('.edit')).forEach((tarea)=>{
+		tarea.addEventListener('click', (e)=>{
+			editarTarea(e);
+		})
+	});
 
-    });
+	Array.from(document.querySelectorAll('.del')).forEach((tarea)=>{
+		tarea.addEventListener('click', (e)=>{
+			eliminarTarea(e);
+		})
+	});
+	
 
-})();
+
+	
+}
+
+const agregarTarea = (e) => {
+	
+	e.preventDefault();
+
+	let accion = addTarea.innerText;
+
+	let datos = {
+		title: title.value,
+		descripcion: desc.value,
+	}
+
+	try{
+		if(datos.title == ''){
+			throw "Debe completar todos los campos";
+		}else{
+			switch(accion){
+				case 'Actualizar':
+					tareas[refIndice] = datos;
+					
+				break;
+				default:
+					tareas.push(datos);
+				break;
+				
+			}	
+		
+			
+			getTareas();
+			resetForm();
+		}
+	}catch(e){
+		errorDatos.innerHTML+=`<div id="exit" class="alert alert-primary" role="alert">
+		${e}
+	  </div>`;
+	}
+}
+
+const resetForm = ()=>{
+	title.value = '';
+	desc.value = '';
+	setTimeout(()=>{
+		addTarea.innerHTML = "Guardar";
+	},1000);
+}
+
+const eliminarTarea = (e)=>{
+	e.preventDefault();
+	let idRef = e.target.dataset.indice;
+	delete tareas[idRef];
+	getTareas();
+
+}
+
+const editarTarea = (e)=>{
+	e.preventDefault();
+	if(e.target.dataset.indice){
+		tareaUpdate = tareas[e.target.dataset.indice];
+		title.value = tareaUpdate.title;
+		desc.value = tareaUpdate.descripcion;
+		addTarea.innerText = "Actualizar";
+		refIndice = e.target.dataset.indice;
+	}else{
+		addTarea.innerText = "Guardar";
+	}
+	
+	
+
+}
+
+addTarea.addEventListener('click', agregarTarea);
+
+getTareas();
+
+
